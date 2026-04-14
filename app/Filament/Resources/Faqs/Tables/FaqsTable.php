@@ -1,44 +1,39 @@
 <?php
 
-namespace App\Filament\Resources\Causes\Tables;
+namespace App\Filament\Resources\Faqs\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class CausesTable
+class FaqsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('title')
+                TextColumn::make('badge')
+                ->label('Kichik matn')
+                ->searchable(),
+
+          
+            TextColumn::make('title')
                 ->label('Sarlavha')
-                ->html() 
+                ->html()
                 ->limit(50)
                 ->searchable(),
 
-            
-            ImageColumn::make('center_image')
-                ->label('Markaziy rasm')
-                ->disk('public')
-                ->circular(), 
-
-        
-            TextColumn::make('main_action_title')
-                ->label('Blok 1 (Action)')
-                ->toggleable(isToggledHiddenByDefault: true),
-
        
-            TextColumn::make('composition_title')
-                ->label('Blok 3 (Состав)')
-                ->toggleable(isToggledHiddenByDefault: true),
+            TextColumn::make('questions')
+                ->label('Savollar soni')
+                ->getStateUsing(fn ($record) => count($record->questions ?? []) . ' ta savol')
+                ->badge()
+                ->color('info'),
 
             TextColumn::make('updated_at')
-                ->label('Oxirgi tahrir')
+                ->label('Yangilandi')
                 ->dateTime('d.m.Y H:i')
                 ->sortable(),
             ])

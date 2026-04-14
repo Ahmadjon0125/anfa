@@ -160,7 +160,6 @@
                 <!-- Logo -->
                 <a href="/" class="flex items-center gap-2">
                     <img src="{{ asset('img/logo.svg') }}" alt="">
-
                 </a>
 
                 <!-- Desktop Nav -->
@@ -416,7 +415,8 @@
                                 <li>
                                     <div class="flex items-center gap-2 mb-1">
                                         <div class="w-2 h-2 rounded-full bg-primary"></div>
-                                        <span class="font-bold text-accent text-sm sm:text-base">{{ $item['name'] }}</span>
+                                        <span
+                                            class="font-bold text-accent text-sm sm:text-base">{{ $item['name'] }}</span>
                                     </div>
                                     <p class="text-xs text-gray-400 ml-4">{{ $item['desc'] }}</p>
                                 </li>
@@ -432,70 +432,38 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12 sm:mb-16">
                     <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-accent mb-4">
-                        Применение <span class="gradient-text">NOOTROZ</span>
+                        {!! $usage->title !!}
                     </h2>
                     <p class="text-gray-500 text-xs sm:text-sm uppercase tracking-widest font-bold">
-                        Следуйте рекомендованному курсу для максимального результата
+                        {!! $usage->subtitle !!}
                     </p>
                 </div>
 
                 <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-                    <div
-                        class="group relative h-[350px] sm:h-[450px] rounded-3xl overflow-hidden shadow-xl reveal-scale">
-                        <img src="https://picsum.photos/seed/morning-usage/600/800" alt="Morning"
-                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            referrerpolicy="no-referrer" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                        <div class="absolute top-4 sm:top-6 left-4 sm:left-6">
-                            <span
-                                class="bg-primary/90 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Утро</span>
+                    @foreach ($usage->cards as $item)
+                        <div
+                            class="group relative h-[350px] sm:h-[450px] rounded-3xl overflow-hidden shadow-xl reveal-scale">
+                            <img src="{{ asset('storage/' . $item['image']) }}" alt="{{ $item['badge'] }}"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                referrerpolicy="no-referrer" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+                            </div>
+                            <div class="absolute top-4 sm:top-6 left-4 sm:left-6">
+                                <span
+                                    class="bg-primary/90 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">{{ $item['badge'] }}</span>
+                            </div>
+                            <div class="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 right-6 sm:right-8 text-white">
+                                <h3 class="text-xl sm:text-2xl font-bold mb-2">
+                                    {{ $item['title'] }}
+                                </h3>
+                                <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                                    {{ $item['description'] }}
+                                </p>
+                            </div>
                         </div>
-                        <div class="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 right-6 sm:right-8 text-white">
-                            <h3 class="text-xl sm:text-2xl font-bold mb-2">
-                                Дважды в день
-                            </h3>
-                            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
-                                Принимайте 2 капсулы утром во время еды
-                            </p>
-                        </div>
-                    </div>
-                    <div
-                        class="group relative h-[350px] sm:h-[450px] rounded-3xl overflow-hidden shadow-xl reveal-scale">
-                        <img src="https://picsum.photos/seed/evening-usage/600/800" alt="Evening"
-                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            referrerpolicy="no-referrer" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                        <div class="absolute top-4 sm:top-6 left-4 sm:left-6">
-                            <span
-                                class="bg-primary/90 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Вечер</span>
-                        </div>
-                        <div class="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 right-6 sm:right-8 text-white">
-                            <h3 class="text-xl sm:text-2xl font-bold mb-2">
-                                Один раз в день
-                            </h3>
-                            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
-                                Для поддержания эффекта и расслабления
-                            </p>
-                        </div>
-                    </div>
-                    <div
-                        class="group relative h-[350px] sm:h-[450px] rounded-3xl overflow-hidden shadow-xl reveal-scale sm:col-span-2 md:col-span-1">
-                        <img src="https://picsum.photos/seed/course-usage/600/800" alt="Course"
-                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            referrerpolicy="no-referrer" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                        <div class="absolute top-4 sm:top-6 left-4 sm:left-6">
-                            <span
-                                class="bg-primary/90 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Полный
-                                курс</span>
-                        </div>
-                        <div class="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 right-6 sm:right-8 text-white">
-                            <h3 class="text-xl sm:text-2xl font-bold mb-2">3–6 месяцев</h3>
-                            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
-                                Рекомендуемая длительность для стойкого результата
-                            </p>
-                        </div>
-                    </div>
+                    @endforeach
+
+
                 </div>
             </div>
         </section>
@@ -506,72 +474,33 @@
                 <div class="grid lg:grid-cols-2 gap-10 sm:gap-16">
                     <div>
                         <span
-                            class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4 block">Поддержка</span>
+                            class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4 block">{!! $faq->badge !!}</span>
                         <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-accent mb-6 sm:mb-8">
-                            Часто задаваемые <br />
-                            <span class="gradient-text">Вопросы</span>
+                            {!! $faq->title !!}
                         </h2>
                         <p class="text-gray-500 max-w-md text-sm sm:text-base">
-                            Найдите ответы на самые популярные вопросы о нашем когнитивном
-                            комплексе.
+                            {!! $faq->description !!}
                         </p>
                     </div>
 
                     <div class="space-y-4" id="faq-container">
-                        <!-- FAQ Item 1 -->
-                        <div class="border-b border-gray-200 faq-item active">
-                            <button
-                                class="w-full py-5 sm:py-6 flex justify-between items-center text-left group faq-trigger">
-                                <span class="font-bold transition-colors text-primary text-sm sm:text-base">Как быстро
-                                    появится эффект?</span>
-                                <i data-lucide="chevron-down"
-                                    class="w-5 h-5 transition-transform duration-300 rotate-180 text-primary"></i>
-                            </button>
-                            <div class="faq-content overflow-hidden transition-all duration-300"
-                                style="max-height: 200px">
-                                <p class="pb-5 sm:pb-6 text-xs sm:text-sm text-gray-500 leading-relaxed">
-                                    Первые результаты в виде улучшения концентрации и ясности
-                                    мысли обычно заметны уже через 7-10 дней регулярного приема.
-                                </p>
+                        @foreach ($faq->questions as $item)
+                            <div class="border-b border-gray-200 faq-item active">
+                                <button
+                                    class="w-full py-5 sm:py-6 flex justify-between items-center text-left group faq-trigger">
+                                    <span
+                                        class="font-bold transition-colors text-primary text-sm sm:text-base">{{ $item['question'] }}</span>
+                                    <i data-lucide="chevron-down"
+                                        class="w-5 h-5 transition-transform duration-300 rotate-180 text-primary"></i>
+                                </button>
+                                <div class="faq-content overflow-hidden transition-all duration-300"
+                                    style="max-height: 200px">
+                                    <p class="pb-5 sm:pb-6 text-xs sm:text-sm text-gray-500 leading-relaxed">
+                                        {{ $item['answer'] }}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <!-- FAQ Item 2 -->
-                        <div class="border-b border-gray-200 faq-item">
-                            <button
-                                class="w-full py-5 sm:py-6 flex justify-between items-center text-left group faq-trigger">
-                                <span
-                                    class="font-bold transition-colors text-accent group-hover:text-primary text-sm sm:text-base">Как
-                                    принимать NOOTROZ?</span>
-                                <i data-lucide="chevron-down"
-                                    class="w-5 h-5 transition-transform duration-300 text-gray-400"></i>
-                            </button>
-                            <div class="faq-content overflow-hidden transition-all duration-300"
-                                style="max-height: 0">
-                                <p class="pb-5 sm:pb-6 text-xs sm:text-sm text-gray-500 leading-relaxed">
-                                    Рекомендуется принимать по 2 капсулы в день, желательно во
-                                    время завтрака, запивая достаточным количеством воды.
-                                </p>
-                            </div>
-                        </div>
-                        <!-- FAQ Item 3 -->
-                        <div class="border-b border-gray-200 faq-item">
-                            <button
-                                class="w-full py-5 sm:py-6 flex justify-between items-center text-left group faq-trigger">
-                                <span
-                                    class="font-bold transition-colors text-accent group-hover:text-primary text-sm sm:text-base">Есть
-                                    ли побочные эффекты?</span>
-                                <i data-lucide="chevron-down"
-                                    class="w-5 h-5 transition-transform duration-300 text-gray-400"></i>
-                            </button>
-                            <div class="faq-content overflow-hidden transition-all duration-300"
-                                style="max-height: 0">
-                                <p class="pb-5 sm:pb-6 text-xs sm:text-sm text-gray-500 leading-relaxed">
-                                    NOOTROZ состоит из натуральных компонентов и обычно хорошо
-                                    переносится. Однако перед применением рекомендуется
-                                    проконсультироваться с врачом.
-                                </p>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -582,42 +511,43 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                     <div class="reveal-left">
-                        <span class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4 block">Действуйте
-                            сейчас</span>
+                        <span
+                            class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4 block">{!! $consultation->badge !!}</span>
                         <h2 class="text-4xl sm:text-5xl font-bold text-accent mb-6 leading-tight">
-                            Готовы мыслить <br />
-                            <span class="gradient-text italic">Яснее?</span>
+                            {!! $consultation->title !!}
                         </h2>
                         <p class="text-gray-600 mb-8 sm:mb-10 max-w-sm text-sm sm:text-base">
-                            Закажите NOOTROZ сегодня и начните путь к максимальной
-                            продуктивности вашего мозга.
+                            {!! $consultation->description !!}
                         </p>
-                        <img src="./assets/nootroz-box.png" alt="NOOTROZ box" class="w-48 sm:w-64 drop-shadow-xl" />
+                        <img src="{{ asset('storage/' . $consultation->image_path) }}" alt="NOOTROZ box"
+                            class="w-48 sm:w-64 drop-shadow-xl" />
                     </div>
 
                     <div
                         class="bg-gray-50 p-8 sm:p-10 rounded-[32px] sm:rounded-[40px] border border-gray-100 reveal-up">
                         <h3 class="text-xl sm:text-2xl font-bold text-accent mb-2">
-                            Получить консультацию
+                            {!! $consultation->form_title !!}
                         </h3>
                         <p class="text-xs sm:text-sm text-gray-500 mb-6 sm:mb-8">
-                            Оставьте заявку, и наш специалист свяжется с вами для
-                            индивидуального подбора курса.
+                            {!! $consultation->form_subtitle !!}
                         </p>
 
-                        <form class="space-y-3 sm:space-y-4" id="consultation-form">
-                            <input type="text" placeholder="Имя" required
+                        <form action="/lead" method="POST" class="space-y-3 sm:space-y-4" id="consultation-form">
+                            @csrf
+                            <input type="text" name="name" placeholder="Имя" required
                                 class="w-full px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl bg-white border border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm sm:text-base" />
-                            <input type="email" placeholder="Email" required
+
+                            <input type="email" name="email" placeholder="Email" required
                                 class="w-full px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl bg-white border border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm sm:text-base" />
-                            <input type="tel" placeholder="Телефон" required
+
+                            <input type="tel" name="phone" placeholder="Телефон" required
                                 class="w-full px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl bg-white border border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm sm:text-base" />
                             <button type="submit"
                                 class="w-full bg-accent text-white py-4 sm:py-5 rounded-2xl font-bold hover:bg-gray-800 transition-all shadow-lg shadow-black/10 mt-2 sm:mt-4 text-sm sm:text-base">
                                 Записаться на консультацию
                             </button>
                             <p class="text-[10px] text-center text-gray-400 mt-3 sm:mt-4">
-                                Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+                                {!! $consultation->form_text !!}
                             </p>
                         </form>
                     </div>
@@ -632,26 +562,30 @@
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-12 sm:mb-16">
                 <div class="col-span-2 lg:col-span-1">
                     <div class="font-display font-bold text-2xl tracking-tighter mb-4 sm:mb-6">
-                        <span>ANFA</span>
-                        <span class="text-[10px] ml-1 font-normal text-gray-500 uppercase tracking-widest block">Group
-                            of Companies</span>
+
+                        <a href="/" class="flex items-center gap-2">
+                            <img src="{{ asset('img/logo.svg') }}" alt="">
+                        </a>
                     </div>
                     <p class="text-gray-500 text-xs sm:text-sm mb-6 sm:mb-8 leading-relaxed">
-                        Advanced cognitive optimization formulated by ANFA
-                        Pharmaceuticals.
+                       {!! $info->about_text !!}
                     </p>
                     <div class="flex gap-3 sm:gap-4">
                         <a href="#"
                             class="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-gray-800 flex items-center justify-center hover:bg-primary hover:border-primary transition-all">
-                            <i data-lucide="instagram" class="w-4 h-4"></i>
+                            <img src="{{asset('img/instagram.svg')}}" class="w-4 h-4"></img>
                         </a>
                         <a href="#"
                             class="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-gray-800 flex items-center justify-center hover:bg-primary hover:border-primary transition-all">
-                            <i data-lucide="facebook" class="w-4 h-4"></i>
+                            <img src="{{asset('img/facebook.svg')}}" class="w-4 h-4"></img>
+                        </a>
+                       <a href="#"
+                            class="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-gray-800 flex items-center justify-center hover:bg-primary hover:border-primary transition-all">
+                            <img src="{{asset('img/telegram.svg')}}" class="w-4 h-4"></img>
                         </a>
                         <a href="#"
                             class="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-gray-800 flex items-center justify-center hover:bg-primary hover:border-primary transition-all">
-                            <i data-lucide="linkedin" class="w-4 h-4"></i>
+                            <img src="{{asset('img/linkedin.svg')}}" class="w-4 h-4"></img>
                         </a>
                     </div>
                 </div>
@@ -699,20 +633,20 @@
                     </h4>
                     <ul class="space-y-3 sm:space-y-4 text-xs sm:text-sm text-gray-500">
                         <li class="flex gap-3">
-                            <i data-lucide="phone" class="w-4 h-4 text-primary flex-shrink-0"></i>
-                            <span>+ 998 90 123 45 67</span>
+                            <img src="{{asset('img/phone.svg')}}" class="w-4 h-4 text-primary flex-shrink-0"></img>
+                            <span>{!! $info->phone !!}</span>
                         </li>
                         <li class="flex gap-3">
-                            <i data-lucide="map-pin" class="w-4 h-4 text-primary flex-shrink-0"></i>
-                            <span>г. Ташкент, Сергелийский район, ТКАД</span>
+                            <img src="{{asset('img/location.svg')}}" class="w-4 h-4 text-primary flex-shrink-0"></img>
+                            <span>{!! $info->address !!}</span>
                         </li>
                         <li class="flex gap-3">
-                            <i data-lucide="mail" class="w-4 h-4 text-primary flex-shrink-0"></i>
-                            <span>info@jacsino.uz</span>
+                            <img src="{{asset('img/mail.svg')}}" class="w-4 h-4 text-primary flex-shrink-0"></img>
+                            <span>{!! $info->email !!}</span>
                         </li>
                         <li class="flex gap-3">
-                            <i data-lucide="clock" class="w-4 h-4 text-primary flex-shrink-0"></i>
-                            <span>Пн-Вс: 09:00 – 20:00</span>
+                            <img src="{{asset('img/clock.svg')}}" class="w-4 h-4 text-primary flex-shrink-0"></img>
+                            <span>{!! $info->work_hours !!}</span>
                         </li>
                     </ul>
                 </div>
@@ -841,20 +775,6 @@
                 }
             });
 
-            // ===== Form Submission =====
-            var form = document.getElementById("consultation-form");
-            if (form) {
-                form.addEventListener("submit", function(e) {
-                    e.preventDefault();
-                    var formData = new FormData(form);
-                    var data = Object.fromEntries(formData.entries());
-                    console.log("Form submitted:", data);
-                    alert(
-                        "Спасибо! Ваша заявка принята. Мы свяжемся с вами в ближайшее время.",
-                    );
-                    form.reset();
-                });
-            }
 
             // ===== Reveal Animation on Scroll =====
             var revealElements = document.querySelectorAll(
