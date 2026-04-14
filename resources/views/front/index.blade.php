@@ -4,9 +4,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NOOTROZ - Пик Умственной Продуктивности</title>
+    {{-- seo --}}
+    <title>{{ $product->seo_title ?? 'NOOTROZ - Пик Умственной Продуктивности' }}</title>
     <meta name="description"
-        content="Инновационная формула для улучшения памяти, концентрации и защиты мозга. Разработано ведущими нейробиологами." />
+        content="{{ $product->seo_description ?? 'Инновационная формула для улучшения памяти, концентрации и защиты мозга. Разработано ведущими нейробиологами.' }}">
+
+    <meta property="og:title" content="{{ $product->seo_title ?? $product->title }}">
+    <meta property="og:description" content="{{ $product->seo_description ?? $product->description }}">
+    <meta property="og:image" content="{{ asset('storage/' . $product->image_path) }}">
+
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -43,7 +49,7 @@
         }
     </style>
 
-    <!-- Custom CSS -->
+    /* <!-- Custom CSS --> */
     <style>
         /* Reveal Animations */
         .reveal-up,
@@ -174,7 +180,7 @@
                 <div class="flex items-center gap-4">
                     <!-- Order Button (Desktop) -->
                     <button
-                        class="hidden md:block bg-primary text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-primary-dark transition-all shadow-sm">
+                        class="hidden md:block bg-[#171717] text-white px-6 py-2.5 rounded-[8px] text-sm font-semibold hover:bg-primary-dark transition-all shadow-sm">
                         Заказать
                     </button>
 
@@ -219,7 +225,7 @@
         </nav>
         <div class="p-6 mt-auto">
             <button
-                class="mobile-link w-full bg-primary text-white py-4 rounded-2xl font-bold hover:bg-primary-dark transition-all shadow-lg shadow-primary/20">
+                class="mobile-link w-full bg-[#171717] text-white py-4 rounded-[8px] font-bold hover:bg-primary-dark transition-all shadow-lg shadow-primary/20">
                 Заказать
             </button>
         </div>
@@ -231,23 +237,20 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                     <div class="reveal-left">
-                        <span class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4 block">Когнитивный
-                            комплекс</span>
+                        <span
+                            class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4 block">{{ $product->subtitle }}</span>
                         <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-accent leading-[1.1] mb-6">
-                            Пик Умственной <br />
-                            <span class="gradient-text">Продуктивности</span> <br />
-                            Достигнут
+
+                            {!! $product->title !!}
                         </h1>
                         <p class="text-base sm:text-lg text-gray-600 mb-8 sm:mb-10 max-w-lg leading-relaxed">
-                            Инновационная формула для улучшения памяти, концентрации и
-                            защиты мозга. Разработано ведущими нейробиологами для тех, кто
-                            требует от себя большего каждый день.
+                            {{ $product->description }}
                         </p>
 
                         <div class="flex flex-wrap gap-8 sm:gap-12 mb-10 sm:mb-12">
                             <div>
                                 <div class="text-3xl sm:text-4xl font-bold text-primary mb-1">
-                                    98%
+                                    {{ $product->absorption_rate }}
                                 </div>
                                 <div class="text-[10px] sm:text-xs uppercase tracking-widest text-gray-400 font-bold">
                                     Усвояемость
@@ -255,7 +258,7 @@
                             </div>
                             <div>
                                 <div class="text-3xl sm:text-4xl font-bold text-primary mb-1">
-                                    3-6 <span class="text-xl sm:text-2xl">Мес</span>
+                                    {{ $product->course_duration }} <span class="text-xl sm:text-2xl">Мес</span>
                                 </div>
                                 <div class="text-[10px] sm:text-xs uppercase tracking-widest text-gray-400 font-bold">
                                     Полный курс
@@ -263,7 +266,7 @@
                             </div>
                             <div>
                                 <div class="text-3xl sm:text-4xl font-bold text-primary mb-1">
-                                    30
+                                    {{ $product->capsule_count }}
                                 </div>
                                 <div class="text-[10px] sm:text-xs uppercase tracking-widest text-gray-400 font-bold">
                                     Мягких капсул
@@ -272,21 +275,21 @@
                         </div>
 
                         <div class="flex flex-wrap gap-3 sm:gap-4">
-                            <button
-                                class="bg-accent text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-bold hover:bg-gray-800 transition-all shadow-lg shadow-black/10 text-sm sm:text-base">
+                            <a href="{{ $product->primary_link }}"
+                                class="bg-accent text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-[8px] font-bold hover:bg-gray-800 transition-all shadow-lg shadow-black/10 text-sm sm:text-base">
                                 Начать курс
-                            </button>
-                            <button
-                                class="border border-gray-200 text-gray-600 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-bold hover:bg-gray-50 transition-all text-sm sm:text-base">
+                            </a>
+                            <a href="{{ $product->secondary_link }}"
+                                class="border border-gray-200 text-gray-600 px-6 sm:px-8 py-3.5 sm:py-4 rounded-[8px] font-bold hover:bg-gray-50 transition-all text-sm sm:text-base">
                                 Изучить состав
-                            </button>
+                            </a>
                         </div>
                     </div>
 
                     <div class="relative reveal-scale flex justify-center lg:justify-end">
                         <div class="absolute inset-0 bg-primary/10 blur-3xl rounded-full -z-10 transform scale-75">
                         </div>
-                        <img src="{{ asset('/img/nootroz-box.png') }}" alt="NOOTROZ Product Box"
+                        <img src="{{ asset('storage/' . $product['image_path']) }}" alt="NOOTROZ Product Box"
                             class="w-full max-w-[320px] sm:max-w-[400px] lg:max-w-md mx-auto drop-shadow-2xl product-float" />
                     </div>
                 </div>
@@ -298,13 +301,10 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16 sm:mb-20">
                     <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-accent mb-6">
-                        Верни контроль над своим <br />
-                        <span class="gradient-text">мышлением</span>
+                        {!! $problem->title !!}
                     </h2>
                     <p class="text-gray-500 max-w-3xl mx-auto text-sm sm:text-base leading-relaxed">
-                        Стресс, недостаток сна, информационный шум и плохое питание ведут
-                        к когнитивному истощению. Мозг теряет способность фокусироваться,
-                        запоминать и быстро принимать решения.
+                        {{ $problem->description }}
                     </p>
                 </div>
 
@@ -324,48 +324,27 @@
                     transparent 100%
                   );
                 ">
-                            <img src="https://picsum.photos/seed/stress-person/800/1000" alt="Stressed person"
+                            <img src="{{ asset('storage/' . $problem->image_path) }}" alt="Stressed person"
                                 class="w-full h-full object-cover" referrerpolicy="no-referrer" />
                         </div>
                     </div>
 
                     <div class="lg:col-span-6 space-y-0 divide-y divide-gray-100">
-                        <div class="py-6 sm:py-8 reveal-up">
-                            <div class="flex items-center gap-4 mb-4">
-                                <i data-lucide="clock" class="w-6 h-6 sm:w-7 sm:h-7 text-accent"></i>
-                                <h3 class="text-lg sm:text-xl font-bold text-accent">
-                                    Хроническая усталость
-                                </h3>
+                        @foreach ($problem->problems as $item)
+                            <div class="py-6 sm:py-8 reveal-up">
+                                <div class="flex items-center gap-4 mb-4">
+                                    <img src="{{ asset('storage/' . $item['icon']) }}" alt=""
+                                        class="w-6 h-6 sm:w-7 sm:h-7 text-accent">
+                                    <h3 class="text-lg sm:text-xl font-bold text-accent">
+                                        {{ $item['title'] }}
+                                    </h3>
+                                </div>
+                                <p class="text-gray-500 text-sm leading-relaxed max-w-lg">
+                                    {{ $item['text'] }}
+                                </p>
                             </div>
-                            <p class="text-gray-500 text-sm leading-relaxed max-w-lg">
-                                Постоянное чувство истощения даже после полноценного сна.
-                                Снижение энергии во второй половине дня.
-                            </p>
-                        </div>
-                        <div class="py-6 sm:py-8 reveal-up">
-                            <div class="flex items-center gap-4 mb-4">
-                                <i data-lucide="brain" class="w-6 h-6 sm:w-7 sm:h-7 text-accent"></i>
-                                <h3 class="text-lg sm:text-xl font-bold text-accent">
-                                    Мозговой туман
-                                </h3>
-                            </div>
-                            <p class="text-gray-500 text-sm leading-relaxed max-w-lg">
-                                Сложность с концентрацией, потеря ясности мысли, забывчивость
-                                в простых повседневных задачах.
-                            </p>
-                        </div>
-                        <div class="py-6 sm:py-8 reveal-up">
-                            <div class="flex items-center gap-4 mb-4">
-                                <i data-lucide="trending-down" class="w-6 h-6 sm:w-7 sm:h-7 text-accent"></i>
-                                <h3 class="text-lg sm:text-xl font-bold text-accent">
-                                    Снижение продуктивности
-                                </h3>
-                            </div>
-                            <p class="text-gray-500 text-sm leading-relaxed max-w-lg">
-                                Неспособность удерживать внимание на одной задаче долгое
-                                время, постоянное отвлечение.
-                            </p>
-                        </div>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
@@ -376,7 +355,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12 sm:mb-16">
                     <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-accent">
-                        Почему <span class="gradient-text">NOOTROZ</span>
+                        {!! $cause->title !!}
                     </h2>
                 </div>
 
@@ -386,29 +365,18 @@
                         class="bg-white p-6 sm:p-8 rounded-3xl border border-gray-100 shadow-xl shadow-gray-200/50 reveal-up">
                         <h3
                             class="text-xl sm:text-2xl font-bold text-primary mb-6 sm:mb-8 pb-4 border-b border-gray-100">
-                            Основное действие
+                            {!! $cause->main_action_title !!}
                         </h3>
                         <ul class="space-y-3 sm:space-y-4">
-                            <li class="flex gap-3 text-xs sm:text-sm text-gray-600 leading-relaxed">
-                                <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></div>
-                                Улучшение памяти и скорости мышления
-                            </li>
-                            <li class="flex gap-3 text-xs sm:text-sm text-gray-600 leading-relaxed">
-                                <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></div>
-                                Защита нейронов от окислительного стресса
-                            </li>
-                            <li class="flex gap-3 text-xs sm:text-sm text-gray-600 leading-relaxed">
-                                <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></div>
-                                Повышение концентрации внимания
-                            </li>
-                            <li class="flex gap-3 text-xs sm:text-sm text-gray-600 leading-relaxed">
-                                <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></div>
-                                Укрепление нервной системы
-                            </li>
-                            <li class="flex gap-3 text-xs sm:text-sm text-gray-600 leading-relaxed">
-                                <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></div>
-                                Стимуляция мозгового кровообращения
-                            </li>
+
+                            @foreach ($cause->main_actions as $item)
+                                <li class="flex gap-3 text-xs sm:text-sm text-gray-600 leading-relaxed">
+                                    <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></div>
+                                    {{ $item }}
+                                </li>
+                            @endforeach
+
+
                         </ul>
                     </div>
 
@@ -417,41 +385,22 @@
                         class="bg-white p-6 sm:p-8 rounded-3xl border border-gray-100 shadow-xl shadow-gray-200/50 flex flex-col items-center reveal-up">
                         <div class="relative w-36 h-36 sm:w-48 sm:h-48 mb-6 sm:mb-8">
                             <div class="absolute inset-0 bg-primary/5 rounded-full animate-pulse"></div>
-                            <img src="https://picsum.photos/seed/brain-glow/400/400" alt="Brain composition"
+                            <img src="{{ asset('storage/' . $cause->center_image) }}" alt="Brain composition"
                                 class="w-full h-full object-contain relative z-10 rounded-full"
                                 referrerpolicy="no-referrer" />
                         </div>
                         <div class="grid grid-cols-2 gap-x-6 sm:gap-x-8 gap-y-4 sm:gap-y-6 w-full">
-                            <div>
-                                <div class="text-xs font-bold text-primary mb-1">
-                                    Гингко Билоба
+                            @foreach ($cause->center_stats as $item)
+                                <div>
+                                    <div class="text-xs font-bold text-primary mb-1">
+                                        {{ $item['label'] }}
+                                    </div>
+                                    <div class="text-[10px] text-gray-400 uppercase tracking-wider">
+                                        {{ $item['sub_label'] }}
+                                    </div>
                                 </div>
-                                <div class="text-[10px] text-gray-400 uppercase tracking-wider">
-                                    Кровообращение
-                                </div>
-                            </div>
-                            <div>
-                                <div class="text-xs font-bold text-primary mb-1">Омега-3</div>
-                                <div class="text-[10px] text-gray-400 uppercase tracking-wider">
-                                    Структура клеток
-                                </div>
-                            </div>
-                            <div>
-                                <div class="text-xs font-bold text-primary mb-1">
-                                    Витамин D3
-                                </div>
-                                <div class="text-[10px] text-gray-400 uppercase tracking-wider">
-                                    Настроение
-                                </div>
-                            </div>
-                            <div>
-                                <div class="text-xs font-bold text-primary mb-1">
-                                    Витамин B
-                                </div>
-                                <div class="text-[10px] text-gray-400 uppercase tracking-wider">
-                                    Энергия мозга
-                                </div>
-                            </div>
+                            @endforeach
+
                         </div>
                     </div>
 
@@ -460,37 +409,18 @@
                         class="bg-white p-6 sm:p-8 rounded-3xl border border-gray-100 shadow-xl shadow-gray-200/50 reveal-up sm:col-span-2 md:col-span-1">
                         <h3
                             class="text-xl sm:text-2xl font-bold text-primary mb-6 sm:mb-8 pb-4 border-b border-gray-100">
-                            Состав
+                            {!! $cause->composition_title !!}
                         </h3>
                         <ul class="space-y-4 sm:space-y-6">
-                            <li>
-                                <div class="flex items-center gap-2 mb-1">
-                                    <div class="w-2 h-2 rounded-full bg-primary"></div>
-                                    <span class="font-bold text-accent text-sm sm:text-base">Кальций</span>
-                                </div>
-                                <p class="text-xs text-gray-400 ml-4">Укрепление костей</p>
-                            </li>
-                            <li>
-                                <div class="flex items-center gap-2 mb-1">
-                                    <div class="w-2 h-2 rounded-full bg-primary"></div>
-                                    <span class="font-bold text-accent text-sm sm:text-base">Фосфор</span>
-                                </div>
-                                <p class="text-xs text-gray-400 ml-4">Энергия клеток</p>
-                            </li>
-                            <li>
-                                <div class="flex items-center gap-2 mb-1">
-                                    <div class="w-2 h-2 rounded-full bg-primary"></div>
-                                    <span class="font-bold text-accent text-sm sm:text-base">Магний</span>
-                                </div>
-                                <p class="text-xs text-gray-400 ml-4">Нервная система</p>
-                            </li>
-                            <li>
-                                <div class="flex items-center gap-2 mb-1">
-                                    <div class="w-2 h-2 rounded-full bg-primary"></div>
-                                    <span class="font-bold text-accent text-sm sm:text-base">Железо</span>
-                                </div>
-                                <p class="text-xs text-gray-400 ml-4">Кислород в крови</p>
-                            </li>
+                            @foreach ($cause->composition_items as $item)
+                                <li>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <div class="w-2 h-2 rounded-full bg-primary"></div>
+                                        <span class="font-bold text-accent text-sm sm:text-base">{{ $item['name'] }}</span>
+                                    </div>
+                                    <p class="text-xs text-gray-400 ml-4">{{ $item['desc'] }}</p>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
