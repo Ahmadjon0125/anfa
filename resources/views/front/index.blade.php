@@ -248,7 +248,7 @@
 
                         <div class="flex flex-wrap gap-8 sm:gap-12 mb-10 sm:mb-12">
                             <div>
-                                <div class="text-3xl sm:text-4xl font-bold text-primary mb-1">
+                                <div class="text-3xl sm:text-4xl font-bold text-[#EAA34F] mb-1">
                                     {{ $product->absorption_rate }}
                                 </div>
                                 <div class="text-[10px] sm:text-xs uppercase tracking-widest text-gray-400 font-bold">
@@ -256,7 +256,7 @@
                                 </div>
                             </div>
                             <div>
-                                <div class="text-3xl sm:text-4xl font-bold text-primary mb-1">
+                                <div class="text-3xl sm:text-4xl font-bold text-[#EAA34F] mb-1">
                                     {{ $product->course_duration }} <span class="text-xl sm:text-2xl">Мес</span>
                                 </div>
                                 <div class="text-[10px] sm:text-xs uppercase tracking-widest text-gray-400 font-bold">
@@ -264,7 +264,7 @@
                                 </div>
                             </div>
                             <div>
-                                <div class="text-3xl sm:text-4xl font-bold text-primary mb-1">
+                                <div class="text-3xl sm:text-4xl font-bold text-[#EAA34F] mb-1">
                                     {{ $product->capsule_count }}
                                 </div>
                                 <div class="text-[10px] sm:text-xs uppercase tracking-widest text-gray-400 font-bold">
@@ -363,14 +363,14 @@
                     <div
                         class="bg-white p-6 sm:p-8 rounded-3xl border border-gray-100 shadow-xl shadow-gray-200/50 reveal-up">
                         <h3
-                            class="text-xl sm:text-2xl font-bold text-primary mb-6 sm:mb-8 pb-4 border-b border-gray-100">
+                            class="text-xl sm:text-2xl font-bold text-[#EAA34F] mb-6 sm:mb-8 pb-4 border-b border-gray-100">
                             {!! $cause->main_action_title !!}
                         </h3>
                         <ul class="space-y-3 sm:space-y-4">
 
                             @foreach ($cause->main_actions as $item)
                                 <li class="flex gap-3 text-xs sm:text-sm text-gray-600 leading-relaxed">
-                                    <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></div>
+                                    <div class="mt-1.5 w-[2px] h-4  bg-[#C9A84C] flex-shrink-0"></div>
                                     {{ $item }}
                                 </li>
                             @endforeach
@@ -391,7 +391,7 @@
                         <div class="grid grid-cols-2 gap-x-6 sm:gap-x-8 gap-y-4 sm:gap-y-6 w-full">
                             @foreach ($cause->center_stats as $item)
                                 <div>
-                                    <div class="text-xs font-bold text-primary mb-1">
+                                    <div class="text-xs font-bold text-[#C9A84C] mb-1">
                                         {{ $item['label'] }}
                                     </div>
                                     <div class="text-[10px] text-gray-400 uppercase tracking-wider">
@@ -407,14 +407,14 @@
                     <div
                         class="bg-white p-6 sm:p-8 rounded-3xl border border-gray-100 shadow-xl shadow-gray-200/50 reveal-up sm:col-span-2 md:col-span-1">
                         <h3
-                            class="text-xl sm:text-2xl font-bold text-primary mb-6 sm:mb-8 pb-4 border-b border-gray-100">
+                            class="text-xl sm:text-2xl font-bold text-[#EAA34F] mb-6 sm:mb-8 pb-4 border-b border-gray-100">
                             {!! $cause->composition_title !!}
                         </h3>
                         <ul class="space-y-4 sm:space-y-6">
                             @foreach ($cause->composition_items as $item)
                                 <li>
                                     <div class="flex items-center gap-2 mb-1">
-                                        <div class="w-2 h-2 rounded-full bg-primary"></div>
+                                        <div class="w-2 h-2 rounded-full bg-[#C9A84C]"></div>
                                         <span
                                             class="font-bold text-accent text-sm sm:text-base">{{ $item['name'] }}</span>
                                     </div>
@@ -490,7 +490,7 @@
                                     class="w-full py-5 sm:py-6 flex justify-between items-center text-left group faq-trigger">
                                     <span
                                         class="font-bold transition-colors text-primary text-sm sm:text-base">{{ $item['question'] }}</span>
-                                    <i data-lucide="chevron-down"
+                                    <i data-lucide="plus"
                                         class="w-5 h-5 transition-transform duration-300 rotate-180 text-primary"></i>
                                 </button>
                                 <div class="faq-content overflow-hidden transition-all duration-300"
@@ -571,20 +571,20 @@
                        {!! $info->about_text !!}
                     </p>
                     <div class="flex gap-3 sm:gap-4">
-                        <a href="#"
-                            class="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-gray-800 flex items-center justify-center hover:bg-primary hover:border-primary transition-all">
+                        <a href="{!! $info->instagram !!}"
+                            class="w-9 h-9 sm:w-10 sm:h-10  flex items-center justify-center hover:opacity-60 hover:scale-120 transition-all">
                             <img src="{{asset('img/instagram.svg')}}" class="w-4 h-4"></img>
                         </a>
-                        <a href="#"
-                            class="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-gray-800 flex items-center justify-center hover:bg-primary hover:border-primary transition-all">
+                        <a href="{!! $info->facebook !!}"
+                            class="w-9 h-9 sm:w-10 sm:h-10  flex items-center justify-center hover:opacity-60 hover:scale-120 transition-all">
                             <img src="{{asset('img/facebook.svg')}}" class="w-4 h-4"></img>
                         </a>
-                       <a href="#"
-                            class="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-gray-800 flex items-center justify-center hover:bg-primary hover:border-primary transition-all">
+                       <a href="{!! $info->telegram !!}"
+                            class="w-9 h-9 sm:w-10 sm:h-10  flex items-center justify-center hover:opacity-60 hover:scale-120 transition-all">
                             <img src="{{asset('img/telegram.svg')}}" class="w-4 h-4"></img>
                         </a>
-                        <a href="#"
-                            class="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-gray-800 flex items-center justify-center hover:bg-primary hover:border-primary transition-all">
+                        <a href="{!! $info->linkedin !!}"
+                            class="w-9 h-9 sm:w-10 sm:h-10  flex items-center justify-center hover:opacity-60 hover:scale-120 transition-all">
                             <img src="{{asset('img/linkedin.svg')}}" class="w-4 h-4"></img>
                         </a>
                     </div>
