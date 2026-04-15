@@ -223,7 +223,7 @@
                 class="mobile-link py-3 px-4 text-base font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-xl transition-all">Консультация</a>
         </nav>
         <div class="p-6 mt-auto">
-            <button
+            <button id="openModal"
                 class="mobile-link w-full bg-[#171717] text-white py-4 rounded-[8px] font-bold hover:bg-primary-dark transition-all shadow-lg shadow-primary/20">
                 Заказать
             </button>
