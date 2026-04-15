@@ -18,7 +18,7 @@ class UsageResource extends Resource
 {
     protected static ?string $model = Usage::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
 
     protected static ?string $recordTitleAttribute = 'Usage';
 

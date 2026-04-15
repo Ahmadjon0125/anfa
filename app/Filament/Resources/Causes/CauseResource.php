@@ -18,7 +18,7 @@ class CauseResource extends Resource
 {
     protected static ?string $model = Cause::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedSparkles;
 
     protected static ?string $recordTitleAttribute = 'Cause';
 

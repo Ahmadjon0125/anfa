@@ -18,7 +18,7 @@ class ProblemResource extends Resource
 {
     protected static ?string $model = Problem::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedExclamationTriangle;
 
     public static function form(Schema $schema): Schema
     {

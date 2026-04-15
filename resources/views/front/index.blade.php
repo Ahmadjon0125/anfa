@@ -178,7 +178,7 @@
 
                 <div class="flex items-center gap-4">
                     <!-- Order Button (Desktop) -->
-                    <button
+                    <button id="openModal"
                         class="hidden md:block bg-[#171717] text-white px-6 py-2.5 rounded-[8px] text-sm font-semibold hover:bg-primary-dark transition-all shadow-sm">
                         Заказать
                     </button>
@@ -329,18 +329,25 @@
                     </div>
 
                     <div class="lg:col-span-6 space-y-0 divide-y divide-gray-100">
+
                         @foreach ($problem->problems as $item)
-                            <div class="py-6 sm:py-8 reveal-up">
-                                <div class="flex items-center gap-4 mb-4">
-                                    <img src="{{ asset('storage/' . $item['icon']) }}" alt=""
-                                        class="w-6 h-6 sm:w-7 sm:h-7 text-accent">
-                                    <h3 class="text-lg sm:text-xl font-bold text-accent">
-                                        {{ $item['title'] }}
-                                    </h3>
+                            <div class="py-6 sm:py-8 border-b border-gray-100  reveal-up">
+
+                                <div class="pl-6 border-l-2 border-accent border-l-[#C9A84C]">
+
+                                    <div class="flex items-center gap-4 mb-2">
+                                        <img src="{{ asset('storage/' . $item['icon']) }}" alt=""
+                                            class="w-8 h-8 sm:w-10 sm:h-10 object-contain">
+                                        <h3 class="text-lg sm:text-xl font-bold text-gray-900">
+                                            {{ $item['title'] }}
+                                        </h3>
+                                    </div>
+
+                                    <p class="text-gray-500 text-sm sm:text-base leading-relaxed max-w-2xl">
+                                        {{ $item['text'] }}
+                                    </p>
+
                                 </div>
-                                <p class="text-gray-500 text-sm leading-relaxed max-w-lg">
-                                    {{ $item['text'] }}
-                                </p>
                             </div>
                         @endforeach
 
@@ -362,10 +369,14 @@
                     <!-- Action Card -->
                     <div
                         class="bg-white p-6 sm:p-8 rounded-3xl border border-gray-100 shadow-xl shadow-gray-200/50 reveal-up">
-                        <h3
-                            class="text-xl sm:text-2xl font-bold text-[#EAA34F] mb-6 sm:mb-8 pb-4 border-b border-gray-100">
-                            {!! $cause->main_action_title !!}
-                        </h3>
+
+                        <div class="mb-6 sm:mb-8">
+                            <h3 class="text-xl sm:text-2xl font-bold text-[#EAA34F] mb-3">
+                                {!! $cause->main_action_title !!}
+                            </h3>
+
+                            <div class="w-10 h-0.5 bg-[#C9A84C] rounded-full"></div>
+                        </div>
                         <ul class="space-y-3 sm:space-y-4">
 
                             @foreach ($cause->main_actions as $item)
@@ -388,9 +399,16 @@
                                 class="w-full h-full object-contain relative z-10 rounded-full"
                                 referrerpolicy="no-referrer" />
                         </div>
-                        <div class="grid grid-cols-2 gap-x-6 sm:gap-x-8 gap-y-4 sm:gap-y-6 w-full">
-                            @foreach ($cause->center_stats as $item)
-                                <div>
+
+                        <div class="grid grid-cols-2 w-full">
+                            @foreach ($cause->center_stats as $index => $item)
+                                <div
+                                    class="py-4 sm:py-6 px-4
+            {{-- O'ng tomondagi vertikal chiziq (faqat chapdagi bloklar uchun) --}}
+            {{ $index % 2 == 0 ? 'border-r border-gray-100' : '' }}
+            {{-- Pastdagi gorizontal chiziq (faqat tepadagi bloklar uchun) --}}
+            {{ $index < 2 ? 'border-b border-gray-100' : '' }}">
+
                                     <div class="text-xs font-bold text-[#C9A84C] mb-1">
                                         {{ $item['label'] }}
                                     </div>
@@ -399,17 +417,19 @@
                                     </div>
                                 </div>
                             @endforeach
-
                         </div>
                     </div>
 
                     <!-- Minerals Card -->
                     <div
                         class="bg-white p-6 sm:p-8 rounded-3xl border border-gray-100 shadow-xl shadow-gray-200/50 reveal-up sm:col-span-2 md:col-span-1">
-                        <h3
-                            class="text-xl sm:text-2xl font-bold text-[#EAA34F] mb-6 sm:mb-8 pb-4 border-b border-gray-100">
-                            {!! $cause->composition_title !!}
-                        </h3>
+                        <div class="mb-6 sm:mb-8">
+                            <h3 class="text-xl sm:text-2xl font-bold text-[#EAA34F] mb-3">
+                                {!! $cause->composition_title !!}
+                            </h3>
+
+                            <div class="w-10 h-0.5 bg-[#C9A84C] rounded-full"></div>
+                        </div>
                         <ul class="space-y-4 sm:space-y-6">
                             @foreach ($cause->composition_items as $item)
                                 <li>
@@ -485,16 +505,25 @@
 
                     <div class="space-y-4" id="faq-container">
                         @foreach ($faq->questions as $item)
-                            <div class="border-b border-gray-200 faq-item active">
-                                <button
-                                    class="w-full py-5 sm:py-6 flex justify-between items-center text-left group faq-trigger">
-                                    <span
-                                        class="font-bold transition-colors text-primary text-sm sm:text-base">{{ $item['question'] }}</span>
-                                    <i data-lucide="plus"
-                                        class="w-5 h-5 transition-transform duration-300 rotate-180 text-primary"></i>
+                            <div class="border-b border-gray-200 faq-item group"> <button
+                                    class="w-full py-5 sm:py-6 flex justify-between items-center text-left faq-trigger">
+                                    <span class="font-bold transition-colors text-black text-sm sm:text-base">
+                                        {{ $item['question'] }}
+                                    </span>
+
+                                    <div class="relative w-5 h-5">
+                                        <i data-lucide="plus"
+                                            class="absolute inset-0 w-5 h-5 transition-all duration-300 transform scale-100 opacity-100 group-[.active]:scale-0 group-[.active]:opacity-0 text-primary">
+                                        </i>
+
+                                        <i data-lucide="minus"
+                                            class="absolute inset-0 w-5 h-5 transition-all duration-300 transform scale-0 opacity-0 group-[.active]:scale-100 group-[.active]:opacity-100 text-primary">
+                                        </i>
+                                    </div>
                                 </button>
-                                <div class="faq-content overflow-hidden transition-all duration-300"
-                                    style="max-height: 200px">
+
+                                <div
+                                    class="faq-content overflow-hidden transition-all duration-300 max-h-0 group-[.active]:max-h-[500px]">
                                     <p class="pb-5 sm:pb-6 text-xs sm:text-sm text-gray-500 leading-relaxed">
                                         {{ $item['answer'] }}
                                     </p>
@@ -564,28 +593,28 @@
                     <div class="font-display font-bold text-2xl tracking-tighter mb-4 sm:mb-6">
 
                         <a href="/" class="flex items-center gap-2">
-                            <img src="{{ asset('img/logo.svg') }}" alt="">
+                            <img src="{{ asset('img/logo_f.svg') }}" alt="">
                         </a>
                     </div>
                     <p class="text-gray-500 text-xs sm:text-sm mb-6 sm:mb-8 leading-relaxed">
-                       {!! $info->about_text !!}
+                        {!! $info->about_text !!}
                     </p>
                     <div class="flex gap-3 sm:gap-4">
                         <a href="{!! $info->instagram !!}"
                             class="w-9 h-9 sm:w-10 sm:h-10  flex items-center justify-center hover:opacity-60 hover:scale-120 transition-all">
-                            <img src="{{asset('img/instagram.svg')}}" class="w-4 h-4"></img>
+                            <img src="{{ asset('img/instagram.svg') }}" class="w-4 h-4"></img>
                         </a>
                         <a href="{!! $info->facebook !!}"
                             class="w-9 h-9 sm:w-10 sm:h-10  flex items-center justify-center hover:opacity-60 hover:scale-120 transition-all">
-                            <img src="{{asset('img/facebook.svg')}}" class="w-4 h-4"></img>
+                            <img src="{{ asset('img/facebook.svg') }}" class="w-4 h-4"></img>
                         </a>
-                       <a href="{!! $info->telegram !!}"
+                        <a href="{!! $info->telegram !!}"
                             class="w-9 h-9 sm:w-10 sm:h-10  flex items-center justify-center hover:opacity-60 hover:scale-120 transition-all">
-                            <img src="{{asset('img/telegram.svg')}}" class="w-4 h-4"></img>
+                            <img src="{{ asset('img/telegram.svg') }}" class="w-4 h-4"></img>
                         </a>
                         <a href="{!! $info->linkedin !!}"
                             class="w-9 h-9 sm:w-10 sm:h-10  flex items-center justify-center hover:opacity-60 hover:scale-120 transition-all">
-                            <img src="{{asset('img/linkedin.svg')}}" class="w-4 h-4"></img>
+                            <img src="{{ asset('img/linkedin.svg') }}" class="w-4 h-4"></img>
                         </a>
                     </div>
                 </div>
@@ -633,19 +662,20 @@
                     </h4>
                     <ul class="space-y-3 sm:space-y-4 text-xs sm:text-sm text-gray-500">
                         <li class="flex gap-3">
-                            <img src="{{asset('img/phone.svg')}}" class="w-4 h-4 text-primary flex-shrink-0"></img>
+                            <img src="{{ asset('img/phone.svg') }}" class="w-4 h-4 text-primary flex-shrink-0"></img>
                             <span>{!! $info->phone !!}</span>
                         </li>
                         <li class="flex gap-3">
-                            <img src="{{asset('img/location.svg')}}" class="w-4 h-4 text-primary flex-shrink-0"></img>
+                            <img src="{{ asset('img/location.svg') }}"
+                                class="w-4 h-4 text-primary flex-shrink-0"></img>
                             <span>{!! $info->address !!}</span>
                         </li>
                         <li class="flex gap-3">
-                            <img src="{{asset('img/mail.svg')}}" class="w-4 h-4 text-primary flex-shrink-0"></img>
+                            <img src="{{ asset('img/mail.svg') }}" class="w-4 h-4 text-primary flex-shrink-0"></img>
                             <span>{!! $info->email !!}</span>
                         </li>
                         <li class="flex gap-3">
-                            <img src="{{asset('img/clock.svg')}}" class="w-4 h-4 text-primary flex-shrink-0"></img>
+                            <img src="{{ asset('img/clock.svg') }}" class="w-4 h-4 text-primary flex-shrink-0"></img>
                             <span>{!! $info->work_hours !!}</span>
                         </li>
                     </ul>
@@ -665,9 +695,66 @@
         </div>
     </footer>
 
+    
+
+    <div id="orderModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm closeModal"></div>
+
+        <div class="relative bg-white rounded-2xl p-6 sm:p-8 w-full max-w-md shadow-2xl">
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-black closeModal">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <h2 class="text-2xl font-bold mb-4">Оставить заявку</h2>
+
+                        <form action="/lead" method="POST" class="space-y-3 sm:space-y-4" id="consultation-form">
+                            @csrf
+                            <input type="text" name="name" placeholder="Имя" required
+                                class="w-full px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl bg-white border border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm sm:text-base" />
+
+                            <input type="email" name="email" placeholder="Email" required
+                                class="w-full px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl bg-white border border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm sm:text-base" />
+
+                            <input type="tel" name="phone" placeholder="Телефон" required
+                                class="w-full px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl bg-white border border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm sm:text-base" />
+                            <button type="submit"
+                                class="w-full bg-accent text-white py-4 sm:py-5 rounded-2xl font-bold hover:bg-gray-800 transition-all shadow-lg shadow-black/10 mt-2 sm:mt-4 text-sm sm:text-base">
+                                Записаться на консультацию
+                            </button>
+                            <p class="text-[10px] text-center text-gray-400 mt-3 sm:mt-4">
+                                {!! $consultation->form_text !!}
+                            </p>
+                        </form>
+        </div>
+    </div>
+
     <!-- JavaScript -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+
+            /* modalka uchun */
+            const modal = document.getElementById('orderModal');
+            const openBtn = document.getElementById('openModal');
+            const closeBtns = document.querySelectorAll('.closeModal');
+
+            // Modalni ochish
+            openBtn.addEventListener('click', () => {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden'; // Saytni skroll bo'lmaydigan qilish
+            });
+
+            // Modalni yopish (X tugmasi yoki orqa fon bosilganda)
+            closeBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                    document.body.style.overflow = 'auto'; // Skrollni qaytarish
+                });
+            });
+
+
+
             // Initialize Lucide icons
             if (window.lucide) {
                 window.lucide.createIcons();
