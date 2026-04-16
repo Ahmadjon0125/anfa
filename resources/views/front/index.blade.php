@@ -289,7 +289,7 @@
                         <div class="absolute inset-0 bg-primary/10 blur-3xl rounded-full -z-10 transform scale-75">
                         </div>
                         <img src="{{ asset('storage/' . $product['image_path']) }}" alt="NOOTROZ Product Box"
-                            class="w-full max-w-[320px] sm:max-w-[400px] lg:max-w-md mx-auto drop-shadow-2xl product-float" />
+                            class="w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[600px] mx-auto drop-shadow-2xl product-float" />
                     </div>
                 </div>
             </div>
